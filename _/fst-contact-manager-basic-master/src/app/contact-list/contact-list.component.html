@@ -1,0 +1,33 @@
+<div class="display-table">
+  <h1>Contact Manager</h1>
+  <md-table #table [dataSource]="dataSource">
+    <ng-container mdColumnDef="name">
+      <md-header-cell *mdHeaderCellDef> Name </md-header-cell>
+      <md-cell *mdCellDef="let element">{{ element.name }} </md-cell>
+    </ng-container>
+  
+    <ng-container mdColumnDef="phone">
+      <md-header-cell *mdHeaderCellDef> Phone </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{ element.phone }} </md-cell>
+    </ng-container>
+  
+  
+    <ng-container mdColumnDef="email">
+      <md-header-cell *mdHeaderCellDef> Email </md-header-cell>
+      <md-cell *mdCellDef="let element"><a href="mailto:{{ element.email }}">{{ element.email }}</a></md-cell>
+    </ng-container>
+  
+    <ng-container mdColumnDef="view">
+      <md-header-cell *mdHeaderCellDef> View </md-header-cell>
+      <md-cell *mdCellDef="let element">
+        <button md-mini-fab color="primary" (click)="openDialog(element._id)"><md-icon class="md-24">remove_red_eye</md-icon></button>
+      </md-cell>
+    </ng-container>
+  
+    <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+  </md-table>
+  <div class="button">
+    <button md-fab (click)="openAddDialog()"><md-icon class="md-24">note_add</md-icon></button>
+  </div>
+</div>

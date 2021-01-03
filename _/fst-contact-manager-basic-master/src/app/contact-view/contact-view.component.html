@@ -1,0 +1,44 @@
+<form class="contact-form">
+  <h1 md-dialog-title>
+    <md-form-field class="full" *ngIf="!displayed">
+      <input mdInput disabled placeholder="Name" value="{{ data.name }}">
+    </md-form-field>
+    <md-form-field class="full" *ngIf="displayed">
+      <input mdInput tabindex="1" placeholder="Name" [(ngModel)]="data.name" name="name">
+    </md-form-field>
+  </h1>
+  <div md-dialog-content *ngIf="!displayed">
+    <md-form-field class="full">
+        <input mdInput disabled placeholder="Phone" value="{{ data.phone }}">
+    </md-form-field>
+    <md-form-field class="full">
+        <a href="mailto:{{ data.email }}"><input mdInput disabled placeholder="Email" value="{{ data.email }}"></a>
+    </md-form-field>
+    <md-form-field class="full">
+        <input mdInput disabled placeholder="address" value="{{ data.address }}">
+    </md-form-field>
+    <md-form-field class="full">
+        <input mdInput disabled placeholder="company" value="{{ data.company }}">
+    </md-form-field>
+  </div>
+  <div md-dialog-content *ngIf="displayed">
+    <md-form-field class="full">
+      <input mdInput tabindex="2" placeholder="Phone" [(ngModel)]="data.phone" name="phone">
+    </md-form-field>
+    <md-form-field class="full">
+      <input mdInput tabindex="3" placeholder="Email" [(ngModel)]="data.email" name="email">
+    </md-form-field>
+    <md-form-field class="full">
+      <input mdInput tabindex="4" placeholder="Address" [(ngModel)]="data.address" name="address">
+    </md-form-field>
+    <md-form-field class="full">
+      <input mdInput tabindex="5" placeholder="Company" [(ngModel)]="data.company" name="company">
+    </md-form-field>    
+  </div>
+  <div md-dialog-actions>
+    <button md-raised-button color="accent" (click)="displayForm()" tabindex="-1" *ngIf="!displayed"><md-icon class="md-24">mode_edit</md-icon> Update</button>
+    <button md-raised-button color="warn" (click)="openConfirmDialog(data._id);" tabindex="-1" *ngIf="!displayed"><md-icon class="md-24">delete</md-icon> Delete</button>
+    <button md-raised-button color="accent" (click)="save(data._id, data);" tabindex="-1" *ngIf="displayed"><md-icon class="md-24">save</md-icon> Save</button>
+    <button md-raised-button color="primary" (click)="close()" tabindex="-1"><md-icon class="md-24">close</md-icon> Close</button>
+  </div>
+</form>
